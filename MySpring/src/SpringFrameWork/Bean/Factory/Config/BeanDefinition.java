@@ -1,5 +1,9 @@
 package SpringFrameWork.Bean.Factory.Config;
 
+import java.util.List;
+
+import SpringFrameWork.Bean.PropertyValue;
+
 
 
 public interface BeanDefinition {
@@ -39,4 +43,6 @@ public interface BeanDefinition {
     String getClasspath() ;
 	
     void setClasspath(String classpath);
+    
+    List<PropertyValue> getPropertyValueList();
 }

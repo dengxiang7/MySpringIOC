@@ -2,6 +2,14 @@ package SpringFrameWork.Bean.Factory.Support;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+
+
+import SpringFrameWork.Bean.PropertyValue;
 import SpringFrameWork.Bean.Factory.Config.BeanDefinition;
 import SpringFrameWork.Core.io.Resource;
 
@@ -22,6 +30,8 @@ public abstract  class AbstractBeanDefinition implements BeanDefinition {
 	
 	
 	private String beanClassName;
+	
+	private final List<PropertyValue> propertyValueList=new ArrayList<>(0);
 
 	public Object getBeanClass() {
 		return beanClass;
@@ -29,6 +39,10 @@ public abstract  class AbstractBeanDefinition implements BeanDefinition {
 
 	public void setBeanClass(Object beanClass) {
 		this.beanClass = beanClass;
+	}
+
+	public List<PropertyValue> getPropertyValueList() {
+		return propertyValueList;
 	}
 
 	public String getClasspath() {

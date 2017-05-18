@@ -3,8 +3,14 @@ package SpringFrameWork.Bean.Factory.XML;
 
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.dom4j.Attribute;
 import org.dom4j.Element;
 
+import SpringFrameWork.Bean.PropertyValue;
 import SpringFrameWork.Bean.Factory.Config.BeanDefinition;
 import SpringFrameWork.Bean.Factory.Support.GenericBeanDefinition;
 
@@ -196,5 +202,55 @@ public class BeanDefinitionParserDelegate {
 	
 	public void parsePropertyElements(Element beanEle, BeanDefinition bd) {
 		
+		ArrayList list=(ArrayList) beanEle.elements("property");
+		
+		Iterator it =list.iterator();
+		
+		while(it.hasNext())
+		{
+			Element el=(Element) it.next();
+			parsePropertyElement(el,bd);
+		}
+		
+		
 	}
+	
+	
+	public void parsePropertyElement(Element beanEle, BeanDefinition bd) {
+		
+		String PropertyName=beanEle.attributeValue(NAME_ATTRIBUTE);
+		
+		List<PropertyValue> list=bd.getPropertyValueList();
+		
+		Iterator it =list.iterator();
+		while(it.hasNext())
+		{
+			PropertyValue pv=(PropertyValue) it.next();
+			if(pv.getName().equals(PropertyName))
+			{
+				return;
+			}
+		}
+		
+		
+		
+		String refAttr=beanEle.attributeValue(REF_ATTRIBUTE);
+		String ValueAttr=beanEle.attributeValue(VALUE_ELEMENT);
+		
+		PropertyValue p=null;
+		if(refAttr!=null)
+		{
+			p=new PropertyValue(PropertyName, refAttr);
+			
+		}else
+		{
+			p=new PropertyValue(PropertyName, ValueAttr);
+		}
+		
+		bd.getPropertyValueList().add(p);
+		
+	}
+	
+	
+	
 }

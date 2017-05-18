@@ -13,12 +13,13 @@ public abstract class AbstractResource implements Resource {
 	@Override
 	public boolean exists() {
 		try {
-			return this.getFile().exists();
-		} catch (IOException e) {
+			 this.getFile().exists();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("文件不存在！");
+			//System.out.println("文件不存在！");
 			return false;
 		}
+		return true;
 	}
 
 	@Override

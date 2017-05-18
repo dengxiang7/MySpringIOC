@@ -34,9 +34,10 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 	@Override
 	public int loadBeanDefinitions(Resource resource) {
 		// TODO Auto-generated method stub
-		FileInputStream fis;
+		//FileInputStream fis;
+		InputStream fis;
 		try {
-			fis = (FileInputStream) resource.getInputStream();
+			fis =  resource.getInputStream();
 			 doLoadBeanDefinitions(fis, resource);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +65,14 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		Document doc=null;
 		DocumentLoader dloader=new DocumentLoader();
 		try {
-			doc=dloader.GetDocument(resource.getFile());
+			
+			if(resource.exists())
+			{
+				doc=dloader.GetDocument(resource.getFile());
+			}else{
+				doc=dloader.GetDocumentByInputStream(fis);
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

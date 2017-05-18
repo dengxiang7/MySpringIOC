@@ -39,7 +39,10 @@ public class DefaultResourceLoader implements ResourceLoader {
 			}
 			else if (location.startsWith(CLASSPATH_URL_PREFIX)) {
 				
-				return null;
+				String path=location.substring(CLASSPATH_URL_PREFIX.length());
+				
+				ClassPathResource res=new ClassPathResource(path);
+				return res;
 			}
 			else {
 				try {

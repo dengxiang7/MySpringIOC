@@ -34,13 +34,13 @@ public class FileSystemResource extends AbstractResource {
 
 	@Override
 	public boolean exists() {
-		return this.exists();
+		return super.exists();
 	}
 
 	@Override
 	public boolean isReadable() {
 		// TODO Auto-generated method stub
-		return this.isReadable();
+		return super.isReadable();
 	}
 
 	@Override
